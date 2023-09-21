@@ -2,8 +2,8 @@ const express = require("express");
 const path = require("path");
 const fsUtils = require("./helpers/fsUtils");
 const uuid = require("./helpers/uuid");
+const dbData = require("./db/db.json");
 const PORT = process.env.PORT || 3001;
-
 
 const app = express();
 
@@ -20,34 +20,35 @@ app.get("/notes", (req, res) => {
   res.sendFile(path.join(__dirname, "/public/notes.html"));
 });
 
-
 //api routes
 app.get("/api/notes", (req, res) => {
-  fsUtils.readFromFile("./db/db.json")
-  .then((data)=> {
+  fsUtils.readFromFile("./db/db.json").then((data) => {
     // console.log(JSON.parse(data));
-        res.json(JSON.parse(data));
-  })
+    res.json(JSON.parse(data));
+  });
 });
 
 app.post("/api/notes", (req, res) => {
-  const {title, text} = req.body;
+  const { title, text } = req.body;
   const userNote = {
     title: title,
     text: text,
-    id: uuid()
-  }
-  fsUtils.readAndAppend(userNote, "./db/db.json")
-  console.log(userNote)
-res.json("Note has been added!✅")
-
-
+    id: uuid(),
+  };
+  fsUtils.readAndAppend(userNote, "./db/db.json");
+  console.log(userNote);
+  res.json("Note has been added!✅");
 });
 
-
-
-
-
+app.delete("/api/notes/:id", (req, res) => {
+  for (let i = 0; i < dbData.length; i++) {
+    const currentNote = dbData[i];
+    if (currentNote.id === req.params.id) {
+      res.json(currentNote);
+      return;
+    }
+  }
+});
 
 app.listen(PORT, () =>
   console.log(`App listening at http://localhost:${PORT}`)

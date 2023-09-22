@@ -5,13 +5,13 @@ The note-taker application is the perfect tool for small business owners who are
 
 ## Installation 🖥️
 To install the note-taker git clone the repository ont your local environment. To use the note-taker app, follow the deployed link below:
-[Note Taker App](NOTE TAKER URL GOES HERE)
+[Note Taker App](https://note-taker-application48573-b5e692be3a90.herokuapp.com/)
 
 ## Usage 📸
-SCREeNSHOT OF DEPLOYED APP with TASKS 
+![Screenshot of Application](./public/assets/NoteTakerAppScreenshot.png)
 
 ## Credits 💳
-I worked on this project alone.
+I worked on this project alone. I received source code from the University of Denver coding boot camp to begin this assignment. All files besides app.js and the README were created by the boot camp and their respective developers. 
 
 ## License 🪪
 This project is not licensed. 

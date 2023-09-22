@@ -41,13 +41,8 @@ app.post("/api/notes", (req, res) => {
 });
 
 app.delete("/api/notes/:id", (req, res) => {
-  for (let i = 0; i < dbData.length; i++) {
-    const currentNote = dbData[i];
-    if (currentNote.id === req.params.id) {
-      res.json(currentNote);
-      return;
-    }
-  }
+      fsUtils.deleteAndAppend(req.params.id, "./db/db.json")
+      res.json("Note has been deleted!🗑️ ")
 });
 
 app.listen(PORT, () =>
